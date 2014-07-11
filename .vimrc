@@ -15,8 +15,8 @@ augroup vimrc_autocmds
   autocmd FileType ruby,javascript match Excess /\%80v.*/
 augroup END
 
-nmap <F1> <CR><CR>end<Esc>-cc
-imap <F1> <CR><CR>end<Esc>-cc
+"Automatically remove all trailing whitespace before saving
+autocmd BufWritePre * :%s/\s\+$//e
 
 execute pathogen#infect()
 
