@@ -1073,7 +1073,7 @@ function! rails#new_app_command(bang,...) abort
   return ''
 endfunction
 
-function! s:app_tags_command() dict
+function! s:app_tags_command() dict abort
   if exists("g:Tlist_Ctags_Cmd")
     let cmd = g:Tlist_Ctags_Cmd
   elseif executable("exuberant-ctags")
@@ -1090,8 +1090,19 @@ function! s:app_tags_command() dict
     call s:error("ctags not found")
     return ''
   endif
-  let args = s:split(get(g:, 'rails_ctags_arguments', '--languages=-javascript'))
-  exe '!'.cmd.' -f '.s:escarg(self.path("tags")).' -R --langmap="ruby:+.rake.builder.jbuilder.rjs" '.join(args,' ').' '.s:escarg(self.path())
+  let cd = exists('*haslocaldir') && haslocaldir() ? 'lcd' : 'cd'
+  let cwd = getcwd()
+  try
+    execute cd fnameescape(self.path())
+    if self.has_path('.ctags')
+      let args = []
+    else
+      let args = s:split(get(g:, 'rails_ctags_arguments', '--languages=ruby'))
+    endif
+    exe '!'.cmd.' -f '.s:escarg(self.path("tags")).' -R '.join(args,' ')
+  finally
+    execute cd fnameescape(cwd)
+  endtry
   return ''
 endfunction
 
@@ -2800,7 +2811,7 @@ endfunc
 
 let s:view_types = split('rhtml,erb,rxml,builder,rjs,haml',',')
 
-function! s:readable_resolve_view(name,...) dict abort
+function! s:readable_resolve_view(name, ...) dict abort
   let name = a:name
   let pre = 'app/views/'
   if name !~# '/'
@@ -2809,7 +2820,9 @@ function! s:readable_resolve_view(name,...) dict abort
       let name = controller.'/'.name
     endif
   endif
-  if name =~# '\.\w\+\.\w\+$' || name =~# '\.\%('.join(s:view_types,'\|').'\)$'
+  if name =~# '/' && !self.app().has_path(fnamemodify('app/views/'.name, ':h'))
+    return ''
+  elseif name =~# '\.\w\+\.\w\+$' || name =~# '\.\%('.join(s:view_types,'\|').'\)$'
     return pre.name
   else
     for format in ['.'.self.format(a:0 ? a:1 : 0), '']
@@ -2846,7 +2859,7 @@ function! s:findlayout(name)
   return rails#buffer().resolve_layout(a:name, line('.'))
 endfunction
 
-function! s:viewEdit(cmd,...)
+function! s:viewEdit(cmd, ...) abort
   if a:0 && a:1 =~ '^[^!#:]'
     let view = matchstr(a:1,'[^!#:]*')
   elseif rails#buffer().type_name('controller','mailer')
@@ -2866,12 +2879,16 @@ function! s:viewEdit(cmd,...)
   endif
   let found = rails#buffer().resolve_view(view, line('.'))
   let djump = a:0 ? matchstr(a:1,'!.*\|#\zs.*\|:\zs\d*\ze\%(:in\)\=$') : ''
-  if found != ''
+  if !empty(found)
     call s:edit(a:cmd,found)
     call s:djump(djump)
     return ''
   elseif a:0 && a:1 =~# '!'
-    call s:edit(a:cmd,'app/views/'.view)
+    let file = 'app/views/'.view
+    if !rails#app().has_path(fnamemodify(file, ':h'))
+      call mkdir(rails#app().path(fnamemodify(file, ':h')), 'p')
+    endif
+    call s:edit(a:cmd, file)
     call s:djump(djump)
     return ''
   else
