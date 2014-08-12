@@ -7,3 +7,6 @@
   br = branch
   aa = add --all
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+[user]
+	name = must-not-code
+	email = test4food@me.com
