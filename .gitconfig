@@ -1,0 +1,9 @@
+[push]
+	default = matching
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  aa = add --all
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
