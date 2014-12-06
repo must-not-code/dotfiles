@@ -20,14 +20,12 @@ nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
 " Highlight
-set background=dark
-set t_Co=256
 hi Normal       ctermfg=15   ctermbg=0
 hi Comment      ctermfg=8               " #bla bla
 hi String       ctermfg=33              " "text"
 hi Constant     ctermfg=33              " true && false
 hi Number       ctermfg=33              " 123
-hi Type         ctermfg=10              " class const
+hi Type         ctermfg=2               " class const
 hi PreProc      ctermfg=1               " def end
 hi Function     ctermfg=15              " method
 hi Statement    ctermfg=202             " if while return
@@ -37,4 +35,6 @@ hi LineNr       ctermfg=8
 hi StatusLine   ctermbg=0     ctermfg=8
 hi StatusLineNC ctermbg=8     ctermfg=0
 hi VertSplit    ctermbg=8     ctermfg=0
-hi Directory    guifg=#FF0000 ctermfg=red
+hi Directory    ctermfg=red
+hi OverLength   ctermbg=4
+match OverLength /\%81v.\+/
