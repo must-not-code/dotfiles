@@ -2,11 +2,17 @@ syntax on
 set number
 set tabstop=2
 set expandtab
+set ttymouse=sgr
 set mouse=a
 set noswapfile
 set hlsearch
 set ignorecase
 set wrap
+
+" Remove mouse clickable width limit if vim version 7.4+
+if has('mouse_sgr')
+  set ttymouse=sgr
+endif
 
 " Automatically remove all trailing whitespace before saving
 autocmd BufWritePre * :%s/\s\+$//e
@@ -37,4 +43,5 @@ hi StatusLineNC ctermbg=8     ctermfg=0
 hi VertSplit    ctermbg=8     ctermfg=0
 hi Directory    ctermfg=red
 hi OverLength   ctermbg=4
+
 match OverLength /\%81v.\+/
