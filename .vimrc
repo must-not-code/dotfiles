@@ -8,6 +8,11 @@ set hlsearch
 set ignorecase
 set wrap
 
+" Remove mouse clickable width limit if vim version 7.4+
+if has('mouse_sgr')
+  set ttymouse=sgr
+endif
+
 " Automatically remove all trailing whitespace before saving
 autocmd BufWritePre * :%s/\s\+$//e
 
