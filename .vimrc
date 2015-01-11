@@ -42,4 +42,5 @@ hi StatusLineNC ctermbg=8     ctermfg=0
 hi VertSplit    ctermbg=8     ctermfg=0
 hi Directory    ctermfg=red
 hi OverLength   ctermbg=4
+
 match OverLength /\%81v.\+/
