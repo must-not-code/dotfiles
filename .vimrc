@@ -25,22 +25,22 @@ nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
 " Highlight
-hi Normal       ctermfg=15   ctermbg=0
-hi Comment      ctermfg=8               " #bla bla
-hi String       ctermfg=33              " "text"
-hi Constant     ctermfg=33              " true && false
-hi Number       ctermfg=33              " 123
-hi Type         ctermfg=2               " class const
-hi PreProc      ctermfg=1               " def end
-hi Function     ctermfg=15              " method
-hi Statement    ctermfg=202             " if while return
-hi Special      ctermfg=11              " {",\r
-hi Identifier   ctermfg=92   cterm=none " @var |line|
-hi LineNr       ctermfg=8
-hi StatusLine   ctermbg=0     ctermfg=8
-hi StatusLineNC ctermbg=8     ctermfg=0
-hi VertSplit    ctermbg=8     ctermfg=0
-hi Directory    ctermfg=red
-hi OverLength   ctermbg=4
+hi Normal       ctermfg=White        ctermbg=Black
+hi Comment      ctermfg=Grey                        " #bla bla
+hi String       ctermfg=Blue                        " "text"
+hi Constant     ctermfg=Blue                        " true && false
+hi Number       ctermfg=Blue                        " 123
+hi Type         ctermfg=DarkGreen                   " class const
+hi PreProc      ctermfg=DarkRed                     " def end
+hi Function     ctermfg=White                       " method
+hi Statement    ctermfg=DarkYellow                  " if while return
+hi Special      ctermfg=Yellow                      " {",\r
+hi Identifier   ctermfg=DarkMagenta  cterm=none     " @var |line|
+hi LineNr       ctermfg=Grey
+hi StatusLine   ctermbg=Black        ctermfg=Gray
+hi StatusLineNC ctermbg=Grey         ctermfg=Black
+hi VertSplit    ctermbg=Grey         ctermfg=Black
+hi Directory    ctermfg=DarkRed
+hi OverLength   ctermbg=DarkBlue
 
 match OverLength /\%81v.\+/
