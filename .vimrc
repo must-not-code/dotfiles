@@ -7,7 +7,6 @@ set noswapfile
 set hlsearch
 set ignorecase
 set wrap
-set formatoptions-=cro
 
 " Remove mouse clickable width limit if vim version 7.4+
 if has('mouse_sgr')
