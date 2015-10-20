@@ -14,5 +14,3 @@
 #  proxy = socks5://localhost:9050
 #[https]
 #  proxy = socks5://localhost:9050
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
