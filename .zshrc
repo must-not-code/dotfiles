@@ -49,7 +49,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/Users/fail/.rvm/gems/ruby-2.1.4/bin:/Users/fail/.rvm/gems/ruby-2.1.4@global/bin:/Users/fail/.rvm/rubies/ruby-2.1.4/bin:/usr/local/opt/ruby/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # export MANPATH="/usr/local/man:$MANPATH"
