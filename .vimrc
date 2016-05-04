@@ -1,14 +1,16 @@
 execute pathogen#infect()
 
-syntax enable
-set number
-set tabstop=2
-set expandtab
+syntax on               " show syntax highlighting
+set number              " show lines numbers
+set tabstop=2           " set indent to 2 spaces
+set expandtab           " use spaces, not tab characters
 set mouse=a
 set noswapfile
-set hlsearch
-set ignorecase
+set hlsearch            " highlight all search matches
+set ignorecase          " ignore case in search
 set wrap
+set cursorline          " highlight current line
+set laststatus=2        " always show status bar
 set formatoptions-=cro
 set background=dark
 colorscheme solarized
