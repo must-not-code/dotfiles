@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="random"
+ZSH_THEME="cloud"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -32,7 +32,7 @@ ZSH_THEME="random"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 source $ZSH/oh-my-zsh.sh
@@ -45,4 +45,10 @@ export EDITOR='vim'
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-crawler() { bundle exec athena start $1 | tee log/$1.log }
+alias ctags='ctags -R --languages=ruby --exclude=.git --exclude=log -f .tags . $(bundle list --paths)'
+crawl() { athena start $1 | tee log/$1.log }
+
+DISABLE_AUTO_UPDATE=true
+
+eval "$(docker-machine env default)"
+#export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"

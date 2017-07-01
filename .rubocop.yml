@@ -6,7 +6,7 @@ AllCops:
     - '**/schema.rb'
 
 Metrics/LineLength:
-  Max: 2000
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
